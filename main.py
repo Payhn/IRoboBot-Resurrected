@@ -52,14 +52,14 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author == client.user:
-        return
+        return              #this will ignore the bot when it's speaking, so it doesn't trigger itself
 
     msg = message.content
 
-    if message.content.startswith('$hello'):
+    if msg.startswith('$hello'):
         await message.channel.send("Hello!")
 
-    if message.content.startswith('#inspire'):
+    if msg.startswith('#inspire'):
         quote = get_quote()
         await message.channel.send(quote)
 
