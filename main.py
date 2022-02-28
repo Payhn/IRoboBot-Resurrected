@@ -1,4 +1,4 @@
-'''
+"""
 Author Michael
 Started twooooosday Feb/22/2022
 Intent, to have a bot for various tasks. Mostly what iRoboBot did back on our old IRC server,
@@ -16,9 +16,7 @@ michael, princess, confucious, spaceballs, bye.
 I also respond to hi, hello, thanks, good job, Is it Friday?, and some more vulgar phrases
 
 
-'''
-
-
+"""
 
 import json
 import random
@@ -30,11 +28,6 @@ client = discord.Client()
 
 
 
-# from dotenv import load_dotenv
-#
-# load_dotenv()
-# TOKEN = os.getenv('DISCORD_TOKEN')
-
 sad_words = ['sad', 'depressed', 'trump']
 
 starter_encouragements = [
@@ -42,13 +35,14 @@ starter_encouragements = [
     "Hang in there!",
     "You can do it!"
 ]
+
+
 # this is a function to return random quotes from a zenquotes website
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
     json_data = json.loads(response.text)
     quote = json_data[0]['q'] + " -" + json_data[0]['a'] + " from zenquotes.io"
-    return(quote)
-
+    return quote
 
 
 '''
@@ -66,21 +60,15 @@ print(f.mode)
 '''
 
 
-
 @client.event
 async def on_ready():
-        print("We have logged in as {0.user} ".format(client))
-
-
-
-
-
+    print("We have logged in as {0.user} ".format(client))
 
 
 @client.event
-async def on_message(message): #this is what to do if there is a message appearing in a channel the bot is monitoring
+async def on_message(message):  # this is what to do if there is a message appearing in a channel the bot is monitoring
     if message.author == client.user:
-        return              #this will ignore the bot when it's speaking, so it doesn't trigger itself
+        return  # this will ignore the bot when it's speaking, so it doesn't trigger itself
 
     msg = message.content
 
@@ -91,11 +79,13 @@ async def on_message(message): #this is what to do if there is a message appeari
         quote = get_quote()
         await message.channel.send(quote)
 
-    if any(word in msg for word in sad_words): ###### todo, need to parse text so that it reads everything lowercase for this check.
-        await message.channel.send(random.choice (starter_encouragements))
+    if any(word in msg for word in
+           sad_words):  # todo, need to parse text so that it reads everything lowercase for this check.
+        await message.channel.send(random.choice(starter_encouragements))
 
 
-##### todo, need to set a feature so when someone replies to any comment with a #quote command it will add the quote to the list of bot quotes. maybe with a link to the message?
+# todo, @addquote when done as a reply to a message. adds message to list of quotes
+# todo @quote responds with a random quote from the list of quotes
 
 # todo, announcement for tweets from certain sources
 
@@ -106,6 +96,4 @@ async def on_message(message): #this is what to do if there is a message appeari
 # todo, @wiki <input> for in chat wiki searching
 
 
-
-
-client.run('ODY0NTg3ODk3MTU5ODExMDcz.YO3oOQ.yd63w7lQmaXBvO1bEc0--niR3R4') #this is the secret token or whatever
+client.run('ODY0NTg3ODk3MTU5ODExMDcz.YO3oOQ.yd63w7lQmaXBvO1bEc0--niR3R4')  # this is the secret token or whatever
