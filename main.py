@@ -32,11 +32,7 @@ client = discord.Client()
 
 sad_words = ['sad', 'depressed', 'trump']
 
-starter_encouragements = [
-    "Cheer up!",
-    "Hang in there!",
-    "You can do it!"
-]
+starter_encouragements = ["Cheer up!", "Hang in there!", "You can do it!"]
 
 
 # this is a function to return random quotes from a zenquotes website
@@ -97,5 +93,10 @@ async def on_message(message):  # this is what to do if there is a message appea
 # todo,  @google <input> for in chat googleing
 # todo, @wiki <input> for in chat wiki searching
 
+with open('.env', 'r') as file:  # opens .env file and reads the contents
+    # into tokenz variable. only reads the one line then closes the file.
+    tokenz = file.read().rstrip()
+    # todo, need to setup this file so we can read different sections for different tokens.
 
-client.run('ODY0NTg3ODk3MTU5ODExMDcz.YO3oOQ.8i6WVFri4qLFfW5A-VPPrqEnGZo')  # this is the secret token or whatever
+client.run(tokenz)
+# client.run('TOKEN-CONTENTS')  # this is the secret token or whatever
