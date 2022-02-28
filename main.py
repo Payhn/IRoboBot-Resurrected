@@ -24,9 +24,11 @@ import random
 import discord
 import requests
 
+# from pathlib import Path
+#
+# token = str(Path('.github/workflows/tokens').read_text())
+
 client = discord.Client()
-
-
 
 sad_words = ['sad', 'depressed', 'trump']
 
@@ -96,4 +98,4 @@ async def on_message(message):  # this is what to do if there is a message appea
 # todo, @wiki <input> for in chat wiki searching
 
 
-client.run('ODY0NTg3ODk3MTU5ODExMDcz.YO3oOQ.yd63w7lQmaXBvO1bEc0--niR3R4')  # this is the secret token or whatever
+client.run('ODY0NTg3ODk3MTU5ODExMDcz.YO3oOQ.8i6WVFri4qLFfW5A-VPPrqEnGZo')  # this is the secret token or whatever
