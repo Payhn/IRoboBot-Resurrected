@@ -1,11 +1,39 @@
-import discord
-import os
-import requests
+'''
+Author Michael
+Started twooooosday Feb/22/2022
+Intent, to have a bot for various tasks. Mostly what iRoboBot did back on our old IRC server,
+plus a few features I might find useful.
+
+
+xtensive — Feb-28-2022 at 11:57 AM CST
+Here's the list output:
+I know: start/stop/launched/scores/leaderboard(duckhunt), eightball,
+tell, s/find/replace, google, image, seen, powerball, cypher,
+crypto, stock, imdb, wiki, weather, random, sl, boobs, version,
+rekt, office, homer, chuck, beer, cybor, dwight, pirates, yomama,
+BOFH, bored, rules, autism, fc, ap, ralph, ned, rodney, matrix,
+michael, princess, confucious, spaceballs, bye.
+I also respond to hi, hello, thanks, good job, Is it Friday?, and some more vulgar phrases
+
+
+'''
+
+
+
 import json
 import random
 
+import discord
+import requests
+
 client = discord.Client()
 
+
+
+# from dotenv import load_dotenv
+#
+# load_dotenv()
+# TOKEN = os.getenv('DISCORD_TOKEN')
 
 sad_words = ['sad', 'depressed', 'trump']
 
@@ -14,7 +42,7 @@ starter_encouragements = [
     "Hang in there!",
     "You can do it!"
 ]
-
+# this is a function to return random quotes from a zenquotes website
 def get_quote():
     response = requests.get("https://zenquotes.io/api/random")
     json_data = json.loads(response.text)
@@ -47,10 +75,10 @@ async def on_ready():
 
 
 
-###### todo, need to parse text so that it reads everything lowercase. might do that might not
+
 
 @client.event
-async def on_message(message):
+async def on_message(message): #this is what to do if there is a message appearing in a channel the bot is monitoring
     if message.author == client.user:
         return              #this will ignore the bot when it's speaking, so it doesn't trigger itself
 
@@ -63,11 +91,21 @@ async def on_message(message):
         quote = get_quote()
         await message.channel.send(quote)
 
-    if any(word in msg for word in sad_words):
+    if any(word in msg for word in sad_words): ###### todo, need to parse text so that it reads everything lowercase for this check.
         await message.channel.send(random.choice (starter_encouragements))
 
 
 ##### todo, need to set a feature so when someone replies to any comment with a #quote command it will add the quote to the list of bot quotes. maybe with a link to the message?
+
+# todo, announcement for tweets from certain sources
+
+# todo, @sw <input1> <input2> to search the last few chat messages
+
+# todo, twitter search function
+# todo,  @google <input> for in chat googleing
+# todo, @wiki <input> for in chat wiki searching
+
+
 
 
 client.run('ODY0NTg3ODk3MTU5ODExMDcz.YO3oOQ.yd63w7lQmaXBvO1bEc0--niR3R4') #this is the secret token or whatever
