@@ -36,7 +36,7 @@ starter_encouragements = ["Cheer up!", "Hang in there!", "You can do it!"]
 def get_quote():  # todo rename this function to zenquote but don't break it. we like it <3
     response = requests.get("https://zenquotes.io/api/random")
     json_data = json.loads(response.text)
-    quote = json_data[0]['q'] + " -" + json_data[0]['a'] + " from zenquotes.io"
+    quote = json_data[0]['q'] + "\n - " + json_data[0]['a'] + " from <http://zenquotes.io/>"
     return quote
 
 
@@ -67,15 +67,15 @@ async def on_message(message):  # this is what to do if there is a message appea
 
     msg = message.content  # just shortens message.content to msg so I don't have to type it every time.
 
-    if msg.startswith('$hello '):
+    if msg.startswith('$hello'):
         await message.channel.send("Hello!")
 
-    if msg.startswith('#inspire '):
+    if msg.startswith('#inspire'):
         quote = get_quote()
         await message.channel.send(quote)
 
-    if msg.startswith('@printer '):  # todo, @printer function to print(discord.<variable>)
-        await message.channel.send()
+    if msg.startswith('@printer'):  # todo, @printer function to print(discord.<variable>)
+        await message.channel.send('not functional yet')
         '''
         psudo code
         user says: @printer User_Input
@@ -85,19 +85,21 @@ async def on_message(message):  # this is what to do if there is a message appea
         purpose: to print variables by name while working on the api
         '''
 
-    if msg.startswith('@random'):  # todo task to pull choose random number from given amount. if no amount given topline defaults to 20
+    if msg.startswith('@roll'):  # todo task to pull choose random number from given amount. if no amount given topline defaults to 20
         # print(message.content)
-        topline = message.content.strip('@random ')
+        topline = message.content.strip('@roll ')
         # print(topline)
         if str(topline) == "":
             topline = 20
         # print(random.randrange(int(topline)))
-        await message.channel.send("I've rolled a " + str(topline) + " sided die. Your result is, \n" + str(random.randrange(int(topline) + 1)))  # the + 1 is because random starts at 0 and rolling a 6 sided die only gets a max of 5 without this
+        await message.channel.send("I've rolled a " + str(topline) + " sided die :game_die: Your result is, \n" + str(1 + random.randrange(int(topline))))  # the + 1 is because random starts at 0 and rolling a 6 sided die only gets a max of 5 without this
 
     if any(word in msg for word in
            sad_words):  # todo, need to parse text so that it reads everything lowercase for this check.
         await message.channel.send(random.choice(starter_encouragements))
 
+    if msg.startswith('@list'):
+        await message.channel.send('I know @random, $hello, #inspire')
 
 # todo, @addquote when done as a reply to a message. adds message to list of quotes
 # todo @quote responds with a random quote from the list of quotes

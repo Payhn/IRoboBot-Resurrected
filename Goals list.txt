@@ -41,3 +41,6 @@ confucious,
 spaceballs,
 bye.
 I also respond to hi, hello, thanks, good job, Is it Friday?, and some more vulgar phrases
+
+
+    list
