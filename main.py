@@ -87,12 +87,13 @@ async def on_message(message):  # this is what to do if there is a message appea
         
         purpose: to print variables by name while working on the api
         '''
-    if msg.startswith('@weather'): #this is going to be for checking the weather at a given location using https://openweathermap.org/api
+    if msg.startswith('@weather'):
+        print('weather attempt by ' + str(message.author))  # this is going to be for checking the weather at a given location using https://openweathermap.org/api
 
     if msg.startswith('@roll'):  # todo task to pull choose random number from given amount. if no amount given topline defaults to 20
-        # print(message.content)
+        #print(message.content)
         topline = message.content.strip('@roll ')
-        # print(topline)
+        #print(topline)
         if str(topline) == "":
             topline = 20
         # print(random.randrange(int(topline)))
