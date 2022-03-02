@@ -1,9 +1,13 @@
 """
 Author Michael
 Started twooooosday Feb/22/2022
-Intent, to have a bot for various tasks. Mostly what iRoboBot did back on our old IRC server,
-plus a few features I might find useful.
+Purpose: to have a bot for various tasks. Mostly what iRoboBot did back on our old IRC server,
+plus a few features I might find useful while in chat without wanting to change windows
 
+Version: 1.2.0
+
+
+OG iRoboBot <3 RIP
 
 xtensive — Feb-28-2022 at 11:57 AM CST
 Here's the list output:
@@ -14,7 +18,6 @@ rekt, office, homer, chuck, beer, cybor, dwight, pirates, yomama,
 BOFH, bored, rules, autism, fc, ap, ralph, ned, rodney, matrix,
 michael, princess, confucious, spaceballs, bye.
 I also respond to hi, hello, thanks, good job, Is it Friday?, and some more vulgar phrases
-
 
 """
 
@@ -84,6 +87,7 @@ async def on_message(message):  # this is what to do if there is a message appea
         
         purpose: to print variables by name while working on the api
         '''
+    if msg.startswith('@weather'): #this is going to be for checking the weather at a given location using https://openweathermap.org/api
 
     if msg.startswith('@roll'):  # todo task to pull choose random number from given amount. if no amount given topline defaults to 20
         # print(message.content)

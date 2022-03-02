@@ -1,18 +1,22 @@
+High(er) Priority:
+weather
+dwight
+confucious
+seen
+
+Lower Priority:
 start/stop/launched/scores/leaderboard(duckhunt),
 eightball,
 tell,
-    s/find/replace,
-    google,
+s/find/replace,
+google,
 image,
-seen,
 powerball,
 cypher,
 crypto,
 stock,
 mdb,
-    wiki,
-weather,
-    random,
+wiki,
 sl,
 boobs,
 version,
@@ -22,7 +26,6 @@ homer,
 chuck,
 beer,
 cybor,
-dwight,
 pirates,
 yomama,
 BOFH,
@@ -37,10 +40,6 @@ rodney,
 matrix,
 michael,
 princess,
-confucious,
 spaceballs,
 bye.
 I also respond to hi, hello, thanks, good job, Is it Friday?, and some more vulgar phrases
-
-
-    list

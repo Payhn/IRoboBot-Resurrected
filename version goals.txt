@@ -1,0 +1,15 @@
+version 1.0 goals:
+    1.1 roll
+    1.2 zenquotes
+    confucious
+    dwight
+    weather
+Version 2.0 goals
+    seen
+    image
+    eightball
+    crypto
+    stocks
+Version 3.0 goals
+    still be active-ishly using/maintaining/expanding bot.
+
