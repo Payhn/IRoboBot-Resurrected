@@ -1,7 +1,8 @@
 version 1.0 goals:
     1.1 roll
     1.2 zenquotes
-    confucious
+    BOB #from the bobiverse books https://www.goodreads.com/series/192752-bobiverse
+        https://read.amazon.com/?asin=B01LWAESYQ&language=en-US
     dwight
     weather
 Version 2.0 goals

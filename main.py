@@ -89,6 +89,28 @@ async def on_message(message):  # this is what to do if there is a message appea
         '''
     if msg.startswith('@weather'):
         print('weather attempt by ' + str(message.author))  # this is going to be for checking the weather at a given location using https://openweathermap.org/api
+        # openweathermap.org
+
+        # https://www.simplifiedpython.net/openweathermap-api-python/#Accessing_Data_By_City_Name
+
+        API_key = "API-KEY"
+        base_url = "http://api.openweathermap.org/data/2.5/weather?"
+
+        city_name = input("Enter a city Name : ")
+        Final_url = base_url + "appid=" + API_key + "&q=" + city_name + "&units=imperial"
+
+        weather_data = requests.get(Final_url).json()
+
+        temp = weather_data['main']['temp']
+
+        wind_speed = weather_data['wind']['speed']
+
+        description = weather_data['weather'][0]['description']
+
+        print("\nCurrent Weather Data Of " + city_name + ":\n")
+        print("Temperature: " + str(temp) + " degrees fahrenheit")
+        print("Wind Speed: " + str(wind_speed) + " MPH")
+        print("With " + description)  # todo, need to have this print all in the discord channel instead of to the console
 
     if msg.startswith('@roll'):  # todo task to pull choose random number from given amount. if no amount given topline defaults to 20
         #print(message.content)
