@@ -34,6 +34,24 @@ sad_words = ['sad', 'depressed', 'trump']
 
 starter_encouragements = ["Cheer up!", "Hang in there!", "You can do it!"]
 
+# opening the file in read mode
+my_file = open(".env", "r")
+
+# reading the file
+data = my_file.read()
+
+my_file.close()
+# replacing end splitting the text
+# when newline ('\n') is seen.
+data_into_list = data.split("\n")
+#print(data_into_list[0])
+
+
+tokenz = data_into_list[0]
+owmapi = data_into_list[1]
+
+data_into_list = 'cleared'
+
 
 # this is a function to return random quotes from a zenquotes website
 def get_quote():  # todo rename this function to zenquote but don't break it. we like it <3
@@ -43,19 +61,7 @@ def get_quote():  # todo rename this function to zenquote but don't break it. we
     return quote
 
 
-'''
 
-this is a thing to read or work with files 
-
-https://www.youtube.com/watch?v=Uh2ebFW8OYM
-
-with open('test.txt', 'r') as f:
-    f_contents = f.read()
-    print(f_contents) #prints the contents of the file I'm working with 
-
-print(f.mode)
-
-'''
 
 
 @client.event
@@ -93,11 +99,11 @@ async def on_message(message):  # this is what to do if there is a message appea
 
         # https://www.simplifiedpython.net/openweathermap-api-python/#Accessing_Data_By_City_Name
 
-        API_key = "API-KEY"
-        base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
-        city_name = input("Enter a city Name : ")
-        Final_url = base_url + "appid=" + API_key + "&q=" + city_name + "&units=imperial"
+        base_url = "http://api.openweathermap.org/data/2.5/weather?"
+        # topline = message.content.strip('@roll ')
+        city_name = message.content.strip('@weather ') #todo need to take the text after weather to input into city name. use roller code for reference
+        Final_url = base_url + "appid=" + owmapi + "&q=" + city_name + "&units=imperial"
 
         weather_data = requests.get(Final_url).json()
 
@@ -107,10 +113,10 @@ async def on_message(message):  # this is what to do if there is a message appea
 
         description = weather_data['weather'][0]['description']
 
-        print("\nCurrent Weather Data Of " + city_name + ":\n")
-        print("Temperature: " + str(temp) + " degrees fahrenheit")
-        print("Wind Speed: " + str(wind_speed) + " MPH")
-        print("With " + description)  # todo, need to have this print all in the discord channel instead of to the console
+        await message.channel.send("\nCurrent Weather Data Of " + city_name + ":\n")
+        await message.channel.send("Temperature: " + str(temp) + " degrees fahrenheit")
+        await message.channel.send("Wind Speed: " + str(wind_speed) + " MPH")
+        await message.channel.send("With " + description)  # todo, need to have this print all in the discord channel instead of to the console
 
     if msg.startswith('@roll'):  # todo task to pull choose random number from given amount. if no amount given topline defaults to 20
         #print(message.content)
@@ -139,10 +145,7 @@ async def on_message(message):  # this is what to do if there is a message appea
 # todo, @google <input> for in chat googleing
 # todo, @wiki <input> for in chat wiki searching
 
-with open('.env', 'r') as file:  # opens .env file and reads the contents
-    # into tokenz variable. only reads the one line then closes the file.
-    tokenz = file.read().rstrip()
-    # todo, need to setup this file so we can read different sections for different tokens.
+
 
 client.run(tokenz)  # this actually starts the bot and passes a password to login from the .env file.
 # client.run('TOKEN-CONTENTS')  # this is the secret token or whatever
