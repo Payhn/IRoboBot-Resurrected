@@ -44,7 +44,7 @@ my_file.close()
 # replacing end splitting the text
 # when newline ('\n') is seen.
 data_into_list = data.split("\n")
-#print(data_into_list[0])
+# print(data_into_list[0])
 
 
 tokenz = data_into_list[0]
@@ -59,9 +59,6 @@ def get_quote():  # todo rename this function to zenquote but don't break it. we
     json_data = json.loads(response.text)
     quote = json_data[0]['q'] + "\n - " + json_data[0]['a'] + " from <http://zenquotes.io/>"
     return quote
-
-
-
 
 
 @client.event
@@ -99,13 +96,12 @@ async def on_message(message):  # this is what to do if there is a message appea
 
         # https://www.simplifiedpython.net/openweathermap-api-python/#Accessing_Data_By_City_Name
 
-
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
         # topline = message.content.strip('@roll ')
-        city_name = message.content.strip('@weather ') #todo need to take the text after weather to input into city name. use roller code for reference
-        Final_url = base_url + "appid=" + owmapi + "&q=" + city_name + "&units=imperial"
+        city_name = message.content.strip('@weather ')  # todo need to take the text after weather to input into city name. use roller code for reference
+        final_url = base_url + "appid=" + owmapi + "&q=" + city_name + "&units=imperial"
 
-        weather_data = requests.get(Final_url).json()
+        weather_data = requests.get(final_url).json()
 
         temp = weather_data['main']['temp']
 
@@ -119,9 +115,9 @@ async def on_message(message):  # this is what to do if there is a message appea
         await message.channel.send("With " + description)  # todo, need to have this print all in the discord channel instead of to the console
 
     if msg.startswith('@roll'):  # todo task to pull choose random number from given amount. if no amount given topline defaults to 20
-        #print(message.content)
+        # print(message.content)
         topline = message.content.strip('@roll ')
-        #print(topline)
+        # print(topline)
         if str(topline) == "":
             topline = 20
         # print(random.randrange(int(topline)))
@@ -144,8 +140,6 @@ async def on_message(message):  # this is what to do if there is a message appea
 # todo, twitter search function
 # todo, @google <input> for in chat googleing
 # todo, @wiki <input> for in chat wiki searching
-
-
 
 client.run(tokenz)  # this actually starts the bot and passes a password to login from the .env file.
 # client.run('TOKEN-CONTENTS')  # this is the secret token or whatever
